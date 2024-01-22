@@ -28,7 +28,7 @@ onMounted(() => { getCompanies() })
         </div>
 
         <div class="max-w-7xl mx-auto">
-            <Company class="inline-flex" v-for="company in filteredCompanies" :key="company.id" :company="company" />
+            <Company class="inline-flex" v-for="company in filteredCompanies == '' ? companies : filteredCompanies" :key="company.id" :company="company" />
         </div>
     </div>
 </template>
