@@ -1,7 +1,48 @@
-# Vue 3 + Vite
+<div align="center">
+  <h1>Ourikas Vue</h1>
+  <img alt="Last commit" src="https://img.shields.io/github/last-commit/henriquenandrade/ourikas-vue"/>
+  <img alt="Language top" src="https://img.shields.io/github/languages/top/henriquenandrade/ourikas-vue"/>
+  <img alt="Repo size" src="https://img.shields.io/github/repo-size/henriquenandrade/ourikas-vue"/>
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+<a href="#project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<a href="#run-project">Run Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+<a href="#dependencies">Dependencies</a>
 
-## Recommended IDE Setup
+</div>
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Project
+
+A guide with information about companies in the city of Ouricuri-Pe.
+
+Contains description, telephone number, social networks and addresses of the city's main businesses.
+
+## Run Project
+
+Clone the project repository:
+```sh
+❯ git clone git@github.com:henriquenandrade/todolist-vue3.git
+```
+
+Run this command to install dependencies:
+```sh
+❯ cd todolist-vue3 && npm install
+```
+
+## Dependencies:
+
+ - axios: ^1.6.5
+ - vue: ^3.3.11
+
+Run this command to start:
+```sh
+❯ npm run dev
+```
+
+To put it into production, run:
+```sh
+❯ npm run build
+```
+
+Currently the application is consuming a json file hosted here: [Ourikas](https://ourikas.github.io/companies.json).
+
+Obs: A rest API will be created soon in Laravel to replace this file.
