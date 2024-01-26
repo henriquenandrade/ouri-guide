@@ -10,13 +10,13 @@ const props = defineProps({
 const { name, description, keywords } = toRefs(props.company)
 
 function splitKeywords(keywords) {
-    const categories = keywords.split(", ", 4)
+    const categories = keywords.split(", ", 3)
     if (categories.length > 1) return categories
 }
 
 function sliceDescription(description) {
     textLength.value = 30;
-    if(description.length >= textLength.value) {
+    if (description.length >= textLength.value) {
         const descriptionSliced = description.slice(0, textLength.value)
         return descriptionSliced + '...'
     }
@@ -26,28 +26,38 @@ function sliceDescription(description) {
 </script>
 
 <template>
-    <div class="p-2 text-center">
-        <div class="max-w-sm p-5 bg-white border border-gray-200 rounded-sm shadow">
-            <a href="#">
-                <p class="mb-2 text-4xl font-bold tracking-tight text-green-950">{{ name }}</p>
-            </a>
-            <p class="mb-3 text-2xl font-semibold text-green-900">{{ sliceDescription(description) }}</p>
-            <ul class="mb-2 flex flex-wrap items-center justify-center text-gray-900">
-                <li class="me-2 m-0.5 px-3 py-2 bg-blue-100 text-green-800 text-sm font-medium rounded"
-                    v-for="company in splitKeywords(keywords)">
-                    {{ company }}
-                </li>
-            </ul>
-            <RouterLink
-                :to="{ name: 'CompanyDetails', params: { id: company.id } }"
-                class="inline-flex items-center px-32 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-sm hover:bg-green-800 focus:outline-none">
-                Detalhes
-                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                    fill="none" viewBox="0 0 14 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M1 5h12m0 0L9 1m4 4L9 9" />
-                </svg>
-            </RouterLink>
+    <div class="p-4 max-w-sm">
+        <div class="flex rounded-md h-full dark:bg-gray-800 bg-teal-400 p-8 flex-col">
+            <div class="flex items-center mb-3">
+                <!-- <div
+                    class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full dark:bg-indigo-500 bg-indigo-500 text-white flex-shrink-0">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        class="w-5 h-5" viewBox="0 0 24 24">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                </div> -->
+                <h2 class="text-white dark:text-white text-4xl font-medium">{{ name }}</h2>
+            </div>
+            <div class="flex flex-col justify-between flex-grow">
+                <p class="text-2xl text-white dark:text-gray-300">
+                    {{ sliceDescription(description) }}
+                </p>
+
+                <ul class="mb-2 mt-4 flex flex-wrap items-center justify-center text-gray-900">
+                    <li class="m-1 px-2 py-2 bg-white text-green-800 text-sm font-medium rounded"
+                        v-for="company in splitKeywords(keywords)">
+                        {{ company }}
+                    </li>
+                </ul>
+                <RouterLink :to="{ name: 'CompanyDetails', params: { id: company.id } }"
+                    class="bg-green-500 rounded-sm py-4 mt-3 font-bold text-white hover:text-green-800 hover:bg-white inline-flex justify-center items-center">
+                    Detalhes
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        class="w-6 h-6 ml-4" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                    </svg>
+                </RouterLink>
+            </div>
         </div>
     </div>
 </template>
