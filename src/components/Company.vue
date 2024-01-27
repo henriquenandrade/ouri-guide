@@ -49,7 +49,7 @@ function sliceDescription(description) {
                         {{ company }}
                     </li>
                 </ul>
-                <RouterLink :to="{ name: 'CompanyDetails', params: { id: company.id } }"
+                <RouterLink :to="{ name: 'CompanyDetails', params: { slug: company.alias } }"
                     class="bg-green-500 rounded-sm py-4 mt-3 font-bold text-white hover:text-green-800 hover:bg-white inline-flex justify-center items-center">
                     Detalhes
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

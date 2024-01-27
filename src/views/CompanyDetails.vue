@@ -6,12 +6,12 @@ import Menu from '../components/Menu.vue'
 const { company, getCompany } = useCompanies()
 
 const props = defineProps({
-    id: {
+    slug: {
         type: String
     }
 })
 
-onMounted(() => { getCompany(props.id) })
+onMounted(() => { getCompany(props.slug) })
 
 function splitKeywords(keywords) {
     const categories = keywords.split(", ", -1)

@@ -10,11 +10,11 @@ export default function useCompanies() {
         companies.value = response.data
     }
 
-    const getCompany = async (id) => {
+    const getCompany = async (slug) => {
         const response = await axios.get('https://ourikas.github.io/companies.json')
         companies.value = response.data
         company.value = companies.value.filter(el => {
-            return el.id == id
+            return el.alias == slug
         })
     }
 
