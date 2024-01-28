@@ -20,12 +20,12 @@ Contains description, telephone number, social networks and addresses of the cit
 
 Clone the project repository:
 ```sh
-❯ git clone git@github.com:henriquenandrade/todolist-vue3.git
+❯ git clone git@github.com:henriquenandrade/ouri-guide.git
 ```
 
 Run this command to install dependencies:
 ```sh
-❯ cd todolist-vue3 && npm install
+❯ cd ouri-guide && npm install
 ```
 
 ## Dependencies:
