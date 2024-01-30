@@ -4,6 +4,7 @@ import useCompanies from '../composables/companies'
 import Menu from '../components/Menu.vue'
 
 const { company, getCompany } = useCompanies()
+const coords = ref({ lat: 0, lng: 0 })
 
 const props = defineProps({
     slug: {
@@ -16,6 +17,12 @@ onMounted(() => { getCompany(props.slug) })
 function splitKeywords(keywords) {
     const categories = keywords.split(", ", -1)
     if (categories.length > 1) return categories
+}
+
+function setGeolocation(geolocation) {
+    const coordSplit = geolocation.split(", ")
+    coords.value.lat = parseFloat(coordSplit[0])
+    coords.value.lng = parseFloat(coordSplit[1])
 }
 
 </script>
@@ -39,6 +46,7 @@ function splitKeywords(keywords) {
 
             <div class>
                 <div v-for="comp in company" class="bg-white px-5 py-5 mt-5">
+                    {{ setGeolocation(comp.geolocation) }}
                     <p class="font-bold text-4xl mb-2">{{ comp.name }}</p>
                     <span class="font-normal text-2xl">{{ comp.description }}</span>
 
@@ -66,15 +74,26 @@ function splitKeywords(keywords) {
                         <p>{{ comp.contact.email }}</p>
                     </div>
 
-                    <div class="font-normal text-lg mt-4">
+                    <div class="font-normal text-lg mt-4 mb-4">
                         <h3 class="font-bold text-2xl mb-2">Endereço</h3>
                         <hr>
-                        <p>{{ comp.address.street }}</p>
+                        <p>CEP: {{ comp.address.zip }}</p>
+                        <p>Endereço (Rua, Av., Bairro): {{ comp.address.street }}</p>
                         <p>{{ comp.address.city }} - {{ comp.address.state }}</p>
-                        <p>{{ comp.address.zipcode }}</p>
                     </div>
+
+                    <GMapMap :center="{ lat: coords.lat, lng: coords.lng }" :zoom="10" map-type-id="terrain"
+                        style="width: 100%; height: 30rem" :options="{
+                            zoomControl: true,
+                            mapTypeControl: true,
+                            scaleControl: true,
+                            streetViewControl: true,
+                            rotateControl: true,
+                            fullscreenControl: true
+                        }" />
                 </div>
             </div>
+
         </div>
 
     </div>
