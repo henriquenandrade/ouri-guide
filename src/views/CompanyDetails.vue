@@ -1,7 +1,8 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import useCompanies from '../composables/companies'
 import Menu from '../components/Menu.vue'
+import { GoogleMap } from 'vue3-google-map'
 
 const { company, getCompany } = useCompanies()
 const coords = ref({ lat: 0, lng: 0 })
@@ -82,7 +83,7 @@ function setGeolocation(geolocation) {
                         <p>{{ comp.address.city }} - {{ comp.address.state }}</p>
                     </div>
 
-                    <GMapMap :center="{ lat: coords.lat, lng: coords.lng }" :zoom="10" map-type-id="terrain"
+                    <!-- <GMapMap :center="{ lat: coords.lat, lng: coords.lng }" :zoom="10" map-type-id="terrain"
                         style="width: 100%; height: 30rem" :options="{
                             zoomControl: true,
                             mapTypeControl: true,
@@ -90,7 +91,12 @@ function setGeolocation(geolocation) {
                             streetViewControl: true,
                             rotateControl: true,
                             fullscreenControl: true
-                        }" />
+                        }" /> -->
+                    <GoogleMap
+                        api_key="VITE_GOOGLE_MAPS_API_KEY=AIzaSyDNNKXNZsUQjzrCqoxo-YPWrReYF1Pu6LI"
+                        style="width: 100%;height: 800px"
+                        :zoom="5"
+                    ></GoogleMap>
                 </div>
             </div>
 

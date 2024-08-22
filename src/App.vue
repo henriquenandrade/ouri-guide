@@ -2,7 +2,7 @@
 import { onMounted, ref } from 'vue';
 import Company from './components/Company.vue'
 import useCompanies from './composables/companies'
-import { RouterView } from 'vue-router';
+import { RouterView } from 'vue-router'
 
 const search = ref('')
 const filteredCompanies = ref([])
