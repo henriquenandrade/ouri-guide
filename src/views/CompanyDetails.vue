@@ -39,7 +39,7 @@ function splitKeywords(keywords) {
         <div class="sm:container flex flex-col mx-auto">
             <div>
                 <RouterLink :to="{ name: 'home' }"
-                    class="py-3 px-4 mt-3 gap-2 font-bold bg-gray-900 rounded-lg text-white hover:bg-white hover:text-green-600 inline-flex">
+                    class="py-3 px-4 mt-3 gap-2 font-bold rounded-lg text-black hover:text-green-600 inline-flex">
 
                     <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 ml-0" viewBox="0 0 24 24">
