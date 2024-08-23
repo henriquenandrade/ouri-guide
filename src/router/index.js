@@ -15,6 +15,12 @@ const router = createRouter({
             name: 'CompanyDetails',
             component: () => import('../views/CompanyDetails.vue'),
             props: true
+        },
+        {
+            path: '/contato',
+            name: 'contact',
+            component: () => import('../views/Contact.vue'),
+            props: true
         }
     ]  
 })

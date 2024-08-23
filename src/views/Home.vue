@@ -22,9 +22,9 @@ onMounted(() => { getCompanies() })
 
         <Menu />
 
-        <div class="bg-gray-900 md:py-6 lg:py-20 flex items-center flex-col">
+        <div class="bg-gray-900 md:py-6 lg:py-8 flex items-center flex-col">
             <h1 class="text-5xl font-bold tracking-tight text-white lg:text-7xl">Ouri Guide</h1>
-            <form class="mt-8 w-5/12">
+            <form class="mt-8 mb-4 w-10/12">
                 <input id="" name="" type="text" v-model="search" @keyup="searchCompany()"
                     class="w-full rounded-sm border-0 px-6 py-5 ring-white/10 focus:ring-2 focus:ring-inset focus:ring-green-500 md:text-lg"
                     placeholder="Busque uma empresa...">
