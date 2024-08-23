@@ -26,7 +26,7 @@ function sliceDescription(description) {
 </script>
 
 <template>
-    <div class="p-4 max-w-sm">
+    <div class="m-4">
         <div class="flex rounded-md h-full dark:bg-gray-100 border-black border-2 p-8 flex-col">
             <div class="flex items-center mb-3">
                 <div
@@ -36,7 +36,7 @@ function sliceDescription(description) {
                         <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
                     </svg>
                 </div>
-                <h2 class="text-white dark:text-black text-4xl font-medium">{{ name }}</h2>
+                <h2 class="text-black dark:text-black text-4xl font-medium">{{ name }}</h2>
             </div>
             <div class="flex flex-col justify-between flex-grow">
                 <p class="text-2xl text-black">

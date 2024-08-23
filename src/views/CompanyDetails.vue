@@ -1,11 +1,22 @@
 <script setup>
-import { defineComponent, onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import useCompanies from '../composables/companies'
 import Menu from '../components/Menu.vue'
-import { GoogleMap } from 'vue3-google-map'
 
 const { company, getCompany } = useCompanies()
-const coords = ref({ lat: 0, lng: 0 })
+const coords = ref({ lat: 0, lng: 0 });
+const center = ref({ lat: coords.value.lat, lng: coords.value.lng });
+
+const markers = computed(() => [
+  { position: { lat: coords.value.lat, lng: coords.value.lng } },
+]);
+
+function setGeolocation(geolocation) {
+  const geo = geolocation.split(', ');
+  coords.value.lat = parseFloat(geo[0]);
+  coords.value.lng = parseFloat(geo[1]);
+  center.value = { lat: coords.value.lat, lng: coords.value.lng };
+}
 
 const props = defineProps({
     slug: {
@@ -19,13 +30,6 @@ function splitKeywords(keywords) {
     const categories = keywords.split(", ", -1)
     if (categories.length > 1) return categories
 }
-
-function setGeolocation(geolocation) {
-    const coordSplit = geolocation.split(", ")
-    coords.value.lat = parseFloat(coordSplit[0])
-    coords.value.lng = parseFloat(coordSplit[1])
-}
-
 </script>
 
 <template>
@@ -83,20 +87,26 @@ function setGeolocation(geolocation) {
                         <p>{{ comp.address.city }} - {{ comp.address.state }}</p>
                     </div>
 
-                    <!-- <GMapMap :center="{ lat: coords.lat, lng: coords.lng }" :zoom="10" map-type-id="terrain"
-                        style="width: 100%; height: 30rem" :options="{
-                            zoomControl: true,
-                            mapTypeControl: true,
-                            scaleControl: true,
-                            streetViewControl: true,
-                            rotateControl: true,
-                            fullscreenControl: true
-                        }" /> -->
-                    <GoogleMap
-                        api_key="VITE_GOOGLE_MAPS_API_KEY=AIzaSyDNNKXNZsUQjzrCqoxo-YPWrReYF1Pu6LI"
-                        style="width: 100%;height: 800px"
-                        :zoom="5"
-                    ></GoogleMap>
+                    <div v-if="comp.geolocation">
+                        {{ coords.lat }} - {{ coords.lng }}
+                        <GMapMap
+                            :center="{ lat: coords.lat, lng: coords.lng }"
+                            :zoom="20"
+                            map-type-id="terrain"
+                            style="width: 100%; height: 20rem"
+                        >
+                            <GMapCluster :zoomOnClick="true">
+                                <GMapMarker
+                                    :key="index"
+                                    v-for="(m, index) in markers"
+                                    :position="m.position"
+                                    :clickable="true"
+                                    :draggable="true"
+                                    @click="center = m.position"
+                                />
+                            </GMapCluster>
+                        </GMapMap>
+                    </div>
                 </div>
             </div>
 

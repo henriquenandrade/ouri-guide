@@ -6,7 +6,6 @@ export default defineConfig({
   plugins: [vue()],
   optimizeDeps: {
     include: [
-      "@fawmi/vue-google-maps",
       "fast-deep-equal",
     ],
   },

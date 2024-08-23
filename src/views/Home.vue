@@ -31,7 +31,7 @@ onMounted(() => { getCompanies() })
             </form>
         </div>
 
-        <div class="sm:container mx-auto flex flex-wrap justify-between mt-10">
+        <div class="sm:container mx-auto mt-10">
             <Company v-for="company in filteredCompanies == '' ? companies : filteredCompanies" :key="company.id" :company="company" />
         </div>
     </div>
